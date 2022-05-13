@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./static/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <button @click="sortType = 1">按年龄升序</button>
+        <button @click="sortType = 2">按年龄降序</button>
+        <button @click="sortType = 0">按原样排序</button>
+        <p :style="{color:myColor,fontSize:mySize}">test1</p>
+        <button @click.stop="test1">test1</button>
+        <button @click="test2($event)">test2</button>
+        <button @click="test3('yangmi',$event)">test3</button>
+        <a href="http://www.baidu.com" @click.prevent="cancelDefault">preventDefault</a>
+        <input type="text" @keyup.enter="keyEnter">
+    </div>
+
+    <script>
+
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                keyword:'',
+                persons:[
+                    {id:1, name:'zhaoliying', age:33},
+                    {id:2, name:'yangmi', age:34},
+                    {id:3, name:'qiwei', age:40},
+                    {id:4, name:'dilireba', age:28}
+
+                ],
+
+                sortType:0,
+                fullName4:'',
+                myColor:'red',
+                mySize:'80px'
+               
+            },
+            methods:{
+                test1(event){
+                    console.log(event.target.innerHTML)
+                },
+                test2(event){
+                    console.log(event.target.innerHTML)
+                },
+                test3(str,event){
+                    console.log(str)
+                    console.log(event.target.innerHTML)
+                },
+                cancelDefault(event){
+                    event.preventDefault()
+                },
+                keyEnter(event){
+                    console.log('回车了')
+                }
+
+            },
+            computed:{
+                newPersons(){
+                    return this.sortType
+                }
+            },
+           
+ 
+            })
+
+
+
+ 
+
+    </script>
+</body>
+</html>

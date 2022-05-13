@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./static/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="search" name="" id="" v-model="keyword">
+        <ul>
+            <li v-for="(person,index) in newPersons" :key="person.id">
+            {{person.id}} --- {{person.name}} --- {{person.age}}
+            </li>
+        </ul>
+        <button @click="sortType = 1">按年龄升序</button>
+        <button @click="sortType = 2">按年龄降序</button>
+        <button @click="sortType = 0">按原样排序</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                keyword:'',
+                persons:[
+                    {id:1, name:'zhaoliying', age:33},
+                    {id:2, name:'yangmi', age:34},
+                    {id:3, name:'qiwei', age:40},
+                    {id:4, name:'dilireba', age:28}
+
+                ],
+
+                sortType:0,
+               
+            },
+            computed:{
+                newPersons(){
+                    console.log('haha')
+                    let {keyword, persons, sortType}  = this
+                    let arr = persons.filter(item => item.name.indexOf(keyword) !== -1)
+                    if(sortType !== 0){
+                        arr.sort((a,b) => sortType ===1? a.age -b.age: b.age - a.age)
+                    }
+                    return arr
+                    }
+                }
+            })
+
+
+
+ 
+
+    </script>
+</body>
+</html>

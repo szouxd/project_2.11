@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./static/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a :href="url">aaaaa</a>
+        <a :href="url">test</a>
+        <input type="text" v-model="url">
+        <p >[[fullName4]]</p>
+    </div>
+
+    <script>
+
+        let obj111 = {
+            name:'test',
+            age:33
+        }
+
+        Object.keys(obj111).forEach(item => console.log(item,obj111[item]))
+
+       const vm =  new Vue({
+            el:'#app',
+            delimiters: ['[[', ']]'],
+            data:{
+                url:'http://www.baidu.com',
+                fullName4:''
+            },
+            watch:{
+                url:{
+                    handler(newVal, oldVal){
+                        this.fullName4 = this.url
+                        setTimeout(()=>{console.log('haha')},2000)
+                    },
+                    immediate:true 
+                }
+            }
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>8_axios批量发送请求</title>
+		<script type="text/javascript" src="./static/axios.min.js"></script>
+        <script src="./static/js/vue.js"></script>
+	</head>
+	<body>
+
+        <div id="app">
+            <input type="text" name="" id="" v-model="data1">
+            <button id="btn" @click="fn">点我发送请求</button>
+            //<button id="btn1" @click="test1($event)">点我发送请求2</button>
+            <div id="div1"></div>
+            <ul>
+                <li @click="sendAjax($event)">1</li>
+                <li @click="sendAjax($event)">2</li>
+                <li @click="sendAjax($event)">3</li>
+            </ul>
+
+        </div>
+
+        <script type="text/javascript" >
+
+            vm = new Vue({
+    
+                el:'#app',
+                data:{
+                    data1:0
+                },
+                methods:{
+                    fn(){
+                        this.data1 += 1
+                        console.log(this.data1)
+                    },
+                    test1(event){
+                        value = event.target.innerText
+                        this.data1 = value
+                        console.log(event.target.innerText)
+                    },
+
+                    sendAjax(q){
+                        query = q.target.innerText
+                        axios({
+                                url:'http://127.0.0.1:8000/app1/json',
+                                method:'get',
+                                params:{
+                                q: query,
+                                sort:'starts'
+                                }
+                                }).then(response=>{
+                                console.log(response.data)
+    
+                                }).catch(error=>{
+                                console.log(error.message)
+                                })
+                    }
+    
+                },
+                computed:{
+    
+                },
+                watch:{
+                    data1: function(newVal, oldVal){
+                        this.sendAjax(newVal)
+                    }
+                }
+            })
+        </script>
+
+	</body>
+		
+
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./static/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="search" name="" id="" v-model="keyword">
+        <ul>
+            <li v-for="(person,index) in newPersons" :key="person.id">
+            {{person.id}} --- {{person.name}} --- {{person.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                keyword:'',
+                persons:[
+                    {id:1, name:'zhaoliying', age:33},
+                    {id:2, name:'yangmi', age:34},
+                    {id:3, name:'qiwei', age:40},
+                    {id:4, name:'dilireba', age:28}
+
+                ]
+               
+            },
+            computed:{
+                newPersons(){
+                    let {keyword, persons}  = this
+                    let arr = persons.filter(item => item.name.indexOf(keyword) !== -1)
+                    return arr
+                    }
+                }
+            })
+
+
+
+ 
+
+    </script>
+</body>
+</html>
