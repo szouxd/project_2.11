@@ -7,4 +7,4 @@ driver.get('www.baidu.com')
 time.sleep(3)
 
 for request in driver.requests:
-    print(request)
+    print('test1:',request)
