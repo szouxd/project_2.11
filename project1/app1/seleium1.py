@@ -8,3 +8,4 @@ time.sleep(3)
 
 for request in driver.requests:
     print('test1:',request)
+    print('a')
